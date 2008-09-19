@@ -68,6 +68,22 @@ histarray.prototype =
 	},
 	_remove: function(i)
 	{
+		if(i < this.length)
+		{
+			var a = this._elements[i];
+			for(var j = i; j++ < this.length;)
+				this[i] = (this[i + 1]) ? this[i + 1] : null;
+			
+			this._elements.splice(i,1);
+			delete this[--this.length];
+			return a;
+		}
+		else
+		{
+			var a = this._elements.pop();
+			delete this[--this.length];
+			return a;
+		}
 	},
 	// push csv or a single array
 	push: function()
@@ -100,6 +116,17 @@ histarray.prototype =
 	{
 		var a = this._elements.pop();
 		delete this[--this.length];
+		return a;
+	},
+	splice: function(f,t)
+	{
+		// needs to implement sorting in order to work right,
+		// all the gaps have to be filled in and realigned
+		// with ._elements
+		var a = Array();
+		for(var i = f; i < (f + t); i++)
+			a.push(this._remove(f));
+
 		return a;
 	}
 };
