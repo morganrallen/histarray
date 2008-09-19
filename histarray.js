@@ -95,8 +95,8 @@ histarray.prototype =
 			// at the end of the timeline, so push a new revision
 			if(this.revision == this.revisions)
 			{
-				this.revision++;
 				this.revisions++;
+				this._revision++;
 			}
 			// otherwise just over write the current
 
@@ -120,9 +120,6 @@ histarray.prototype =
 	},
 	splice: function(f,t)
 	{
-		// needs to implement sorting in order to work right,
-		// all the gaps have to be filled in and realigned
-		// with ._elements
 		var a = Array();
 		for(var i = f; i < (f + t); i++)
 			a.push(this._remove(f));

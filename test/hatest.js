@@ -54,6 +54,7 @@ test("histarray.splice()", function()
 	splicesize = 2;
 	var b = ha.splice(2,splicesize);
 	ok(a[ha.revisions] == b[ha.revisions] && a[0] == b[0], "splice returned correct histories");
+	ok(b.length = ha.revisions + 1, "history size correct");
 	ok(l - splicesize == ha.length, "length correct");
 });
 
