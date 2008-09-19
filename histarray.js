@@ -66,6 +66,9 @@ histarray.prototype =
 		});
 		this.length = i + 1;
 	},
+	_remove: function(i)
+	{
+	},
 	// push csv or a single array
 	push: function()
 	{
@@ -73,11 +76,14 @@ histarray.prototype =
 			this.push.apply(this, arguments[0]);
 		else
 		{
+			// at the end of the timeline, so push a new revision
 			if(this.revision == this.revisions)
 			{
 				this.revision++;
 				this.revisions++;
 			}
+			// otherwise just over write the current
+
 			for(var i = 0; i < arguments.length; i++)
 			{
 				if(arguments[i] == null) continue;
@@ -89,5 +95,11 @@ histarray.prototype =
 			}
 		}
 		return this.length;
+	},
+	pop: function()
+	{
+		var a = this._elements.pop();
+		delete this[--this.length];
+		return a;
 	}
 };
