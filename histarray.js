@@ -47,8 +47,6 @@ histarray.prototype =
 	_revision: 0,
 	_add: function(e, i)
 	{
-		var self = this;
-
 		this._elements[i] = (function(e,self)
 		{
 			var a = Array();
@@ -64,11 +62,6 @@ histarray.prototype =
 
 		this.__defineSetter__(i, function(v)
 		{
-			if(v == null)
-			{
-				self._remove(i);
-				return;
-			}
 			return this._elements[i][this.revision] = v;
 		});
 		this.length = i + 1;
